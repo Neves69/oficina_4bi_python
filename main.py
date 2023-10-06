@@ -1,39 +1,23 @@
-import tkinter as tk
-from tkinter import messagebox
+from tkinter import *
+from tkinter import ttk
+import mysql.connector
+conexao = mysql.connector.connect(
+    host='aws.connect.psdb.cloud',
+    user='qi5mny5pgbx5i3t97l6a',
+    password='pscale_pw_IcLyAgT4dkYhFAuLKrQC1WwN9vU1oCaPJnRAII9M62X',
+    database='db_gerenciamento_oficina_4bi',
+)
+cursor = conexao.cursor()
 
-def verificar_login():
-    usuario = entrada_usuario.get()
-    senha = entrada_senha.get()
-
-   
-    if usuario == "usuario" and senha == "senha":
-        messagebox.showinfo("Login bem-sucedido", "Login realizado com sucesso!")
-    else:
-        messagebox.showerror("Erro de login", "Nome de usuário ou senha incorretos")
-
-
-def redefinir_senha():
-    messagebox.showinfo("Redefinir Senha", "Link para redefinir a senha enviado para o seu e-mail")
-
-
-janela = tk.Tk()
-janela.title("Painel de Login - Software de Mecânica")
-
-label_usuario = tk.Label(janela, text="Nome de Usuário:")
-label_senha = tk.Label(janela, text="Senha:")
-
-entrada_usuario = tk.Entry(janela)
-entrada_senha = tk.Entry(janela, show="*") 
-
-botao_login = tk.Button(janela, text="Login", command=verificar_login)
-botao_redefinir_senha = tk.Button(janela, text="Redefinir Senha", command=redefinir_senha)
+janela1 = Tk()
+janela1.iconbitmap('icone.ico')
+janela1.title('MechPro')    
+janela1.geometry('500x500')
+janela1.resizable(width=False, height=False)
+janela1.config(bg='orange')
 
 
-label_usuario.pack()
-entrada_usuario.pack()
-label_senha.pack()
-entrada_senha.pack()
-botao_login.pack()
-botao_redefinir_senha.pack()
+janela1.mainloop()  
 
-janela.mainloop()
+cursor.close()
+conexao.close()
